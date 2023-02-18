@@ -114,26 +114,32 @@ public class ActivityPrincipal extends AppCompatActivity implements AdapterView.
     }
 
     private void IngresarContacto(){
-        try {
-            SQLiteConexion conexion = new SQLiteConexion(this, Transacciones.NameDatabase, null, 1);
-            SQLiteDatabase db = conexion.getWritableDatabase();
+        if(validationDetails()){
+            try {
+                SQLiteConexion conexion = new SQLiteConexion(this, Transacciones.NameDatabase, null, 1);
+                SQLiteDatabase db = conexion.getWritableDatabase();
 
-            ContentValues valores = new ContentValues();
-            valores.put("nombre", nombre.getText().toString());
-            valores.put("combopais", combopais.getSelectedItem().toString());
-            valores.put("numero", numero.getText().toString());
-            valores.put("nota", nota.getText().toString());
+                ContentValues valores = new ContentValues();
+                valores.put("nombre", nombre.getText().toString());
+                valores.put("combopais", combopais.getSelectedItem().toString());
+                valores.put("numero", numero.getText().toString());
+                valores.put("nota", nota.getText().toString());
 
 
 
-            Long Resultado = db.insert(Transacciones.tablacontactos, "id", valores);
-            Toast.makeText(this, Resultado.toString(), Toast.LENGTH_SHORT).show();
+                Long Resultado = db.insert(Transacciones.tablacontactos, "id", valores);
+                Toast.makeText(this, Resultado.toString(), Toast.LENGTH_SHORT).show();
 
-            ClearScreen();
-        }catch (Exception ex)
-        {
-            Toast.makeText(this,"No se pudo ingresar el contacto",Toast.LENGTH_LONG).show();
+                ClearScreen();
+            }catch (Exception ex)
+            {
+                Toast.makeText(this,"No se pudo ingresar el contacto",Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(getApplicationContext(),"Campos Vacios",Toast.LENGTH_SHORT).show();
         }
+
+
     }
 
     private void permisos(){
@@ -210,5 +216,22 @@ public class ActivityPrincipal extends AppCompatActivity implements AdapterView.
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE);
             }
         }
+    }
+
+    private boolean validationDetails() {
+
+        if (nombre.getText().toString().isEmpty()) {
+            nombre.setError("Ingrese el nombre del contacto");
+            return false;
+        }
+        if (numero.getText().toString().isEmpty()) {
+            numero.setError("Ingrese un Numero ");
+            return false;
+        }
+        if (nota.getText().toString().isEmpty()) {
+            nota.setError("Ingrese una Nota ");
+            return false;
+        }
+        return true;
     }
 }

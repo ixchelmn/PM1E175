@@ -38,7 +38,7 @@ public class ActivityListView extends AppCompatActivity {
 
     Contactos currentuser;
 
-    Button btn_actualizar,btn_eliminar,btn_compartir,btn_llamar;
+    Button btn_actualizar,btn_volver,btn_llamar;
 
     TextView instrucciones;
 
@@ -54,6 +54,7 @@ public class ActivityListView extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listview);
         btn_actualizar = (Button) findViewById(R.id.btn_actualizar);
         btn_llamar = (Button) findViewById(R.id.btn_llamar);
+        btn_volver = (Button) findViewById(R.id.btn_volver);
 
         
 
@@ -66,6 +67,14 @@ public class ActivityListView extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 currentuser = listacontactos.get(i);
+            }
+        });
+
+        btn_volver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ActivityPrincipal.class);
+                startActivity(intent);
             }
         });
 

@@ -21,18 +21,11 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btn_compartir"
+        android:id="@+id/btn_volver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#009688"
-        android:text="Compartir Contacto" />
-
-    <Button
-        android:id="@+id/btn_eliminar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#009688"
-        android:text="Eliminar Contacto" />
+        android:text="Regresar" />
 
     <Button
         android:id="@+id/btn_actualizar"
