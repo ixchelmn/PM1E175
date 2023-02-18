@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PM1E175</string>
+
+    <string-array name="cod_pais">
+        <item>504</item>
+        <item>502</item>
+        <item>503</item>
+        <item>506</item>
+    </string-array>
+</resources>
